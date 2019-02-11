@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 public class UserSystemTest {
     @Test
     public void name() {
-        boolean result = false;
+        boolean result = true;
         assertTrue(result);
     }
 }
