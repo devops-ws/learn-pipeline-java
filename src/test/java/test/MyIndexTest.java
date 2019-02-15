@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import util.HttpClientUtil;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static org.junit.Assert.assertTrue;
 
 public class MyIndexTest {
@@ -31,6 +34,10 @@ public class MyIndexTest {
         String status = obj.getString("status");
         System.out.println(responseStr);
         System.out.println(status);
+        Logger log = Logger.getLogger("javasoft");
+        log.setLevel(Level.INFO);
+        log.info(responseStr);
+        log.info(status);
         assertTrue("22032".equals(obj.getString("status")));
     }
 }
