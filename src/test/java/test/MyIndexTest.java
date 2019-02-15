@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import util.HttpClientUtil;
+import util.PropertiesUtil;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,12 +29,12 @@ public class MyIndexTest {
      */
     @Test
     public void newIndex(){
-        String url ="https://pay.qunar.com/mobile/h5/personalcenter/newIndexImprove.htm";
+        String url = PropertiesUtil.getProperty("newIndex.url");
         String responseStr = HttpClientUtil.doPost(url);
         JSONObject obj = JSON.parseObject(responseStr);
         String status = obj.getString("status");
-        System.out.println(responseStr);
-        System.out.println(status);
+       /* System.out.println(responseStr);
+        System.out.println(status);*/
         Logger log = Logger.getLogger("javasoft");
         log.setLevel(Level.INFO);
         log.info(responseStr);
