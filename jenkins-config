@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    tools {
+      maven 'maven'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                // git 'https://github.com/surenpi/demo-junit.git'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/PatWu16/demo-junit.git']]])
+            }
+        }
+        stage('Test') {
+            steps {
+                // sh 'mvn package -DskipTests'
+                echo '1'
+            }
+        }
+        stage('Archive') {
+            steps {
+                archiveArtifacts 'pom.xml'
+            }
+        }
+        stage('Upload') {
+            steps {
+                sh label: '', script: '''docker build -t patwu/jenkins-test .
+                docker login -u patwu -p 646381592306wp
+                docker push patwu/jenkins-test'''
+            }
+        }
+    }
+    post {
+        success {
+            // mail bcc: '', body: '编译成功', cc: '', from: '', replyTo: '', subject: 'jenkins job', to: '1170628453@qq.com'
+            echo 'success'
+        }
+        failure {
+            mail bcc: '', body: '编译成功', cc: '', from: '', replyTo: '', subject: 'jenkins job', to: '1170628453@qq.com'
+            echo 'failure'
+        }
+    }
+}
