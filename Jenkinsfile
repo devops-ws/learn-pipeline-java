@@ -10,6 +10,7 @@ pipeline {
     stage('one'){
       steps{
         echo 'sdf'
+        sleep 10
       }
     }
     
