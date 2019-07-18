@@ -1,25 +1,32 @@
 pipeline {
-  agent any 
+  agent {
+    label 'java'
+  } 
   
   options {
-  disableConcurrentBuilds()
-}
+    disableConcurrentBuilds()
+  }
 
   
   stages{
-    stage('one'){
+    stage('Build & Test'){
       steps{
-        echo 'sdf'
-        sleep 10
+        try {
+          container('java'){
+            sh 'mvn clean package test'
+          }
+        } catch(e) {
+          sh 'mvn clean package test'
+        }
       }
     }
     
-    stage('two'){
+    stage('Only for demo'){
       when {
-  allOf {
-    branch 'master'
-  }
-}
+        allOf {
+          branch 'master'
+        }
+      }
       steps{
         echo 'sf'
       }
