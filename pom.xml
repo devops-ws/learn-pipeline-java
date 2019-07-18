@@ -26,4 +26,11 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <repositories>
+      <repository>
+        <id>central</id>
+        <url>http://117.48.208.45:8081/repository/maven-public/</url>
+      </repository>
+    </repositories>
 </project>
