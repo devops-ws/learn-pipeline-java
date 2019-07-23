@@ -11,12 +11,14 @@ pipeline {
   stages{
     stage('Build & Test'){
       steps{
-        try {
-          container('java'){
+        script{
+          try {
+            container('java'){
+              sh 'mvn clean package test'
+            }
+          } catch(e) {
             sh 'mvn clean package test'
           }
-        } catch(e) {
-          sh 'mvn clean package test'
         }
       }
     }
