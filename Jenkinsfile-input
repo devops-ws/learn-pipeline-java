@@ -14,12 +14,16 @@ pipeline {
       parallel {
         stage('channel-1'){
           steps{
-            echo 'd'
+            input message: 'Please input your age!', ok: 'Confirm',
+              parameters: [string(defaultValue: '18',
+                description: 'Just a joke.', name: 'age', trim: true)]
           }
         }
         stage('channel-2'){
           steps{
-            echo 'd'
+            input message: 'Please input your weight!', ok: 'Confirm',
+              parameters: [string(defaultValue: '50',
+                description: 'Just a joke.', name: 'weight', trim: true)]
           }
         }
       }
