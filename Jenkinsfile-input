@@ -1,0 +1,28 @@
+pipeline {
+  agent any
+  
+  stages{
+    stage('simple'){
+      steps{
+        input message: 'Please input your name!', ok: 'Confirm',
+          parameters: [string(defaultValue: 'rick',
+            description: 'This should not be your real name.', name: 'name', trim: true)]
+      }
+    }
+    
+    stage('complex'){
+      parallel {
+        stage('channel-1'){
+          steps{
+            echo 'd'
+          }
+        }
+        stage('channel-2'){
+          steps{
+            echo 'd'
+          }
+        }
+      }
+    }
+  }
+}
