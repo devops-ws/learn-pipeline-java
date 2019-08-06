@@ -28,5 +28,16 @@ pipeline {
         }
       }
     }
+    
+    stage('use result'){
+      steps{
+        result = input message: 'Please input the git branch name!', ok: 'Confirm',
+          parameters: [string(defaultValue: 'master',
+            description: 'The branch name of git repo', name: 'branchName', trim: true)]
+            
+        git branch: result.branchName, url: 'https://github.com/devops-workspace/demo-junit'
+      }
+    }
+
   }
 }
