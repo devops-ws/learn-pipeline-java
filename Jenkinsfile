@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'java'
+    label 'maven'
   } 
   
   options {
@@ -32,6 +32,12 @@ pipeline {
       steps{
         echo 'sf'
       }
+    }
+  }
+  
+  post{
+    always{
+      junit 'target/surefire-reports/**/*.xml'
     }
   }
 }
