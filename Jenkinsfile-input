@@ -30,14 +30,34 @@ pipeline {
     }
     
     stage('use result'){
-      steps{
-        script{
-          result = input message: 'Please input the git branch name!', ok: 'Confirm',
-            parameters: [string(defaultValue: 'master',
-              description: 'The branch name of git repo', name: 'branchName', trim: true)]
-            
-          git branch: result.branchName, url: 'https://github.com/devops-workspace/demo-junit'
+      parallel {
+        stage('one param'){
+          steps{
+            script{
+              result = input message: 'Please input the git branch name!', ok: 'Confirm',
+                parameters: [string(defaultValue: 'master',
+                  description: 'The branch name of git repo', name: 'branchName', trim: true)]
+
+              git branch: result, url: 'https://github.com/devops-workspace/demo-junit'
+            }
+          }
         }
+        
+        stage('multi-param'){
+          steps{
+            script{
+              result = input message: 'Please input the git branch name!', ok: 'Confirm',
+                parameters: [string(defaultValue: 'master',
+                  description: 'The branch name of git repo', name: 'branchName', trim: true),
+                  string(defaultValue: 'debug info',
+                  description: 'Output the debug info', name: 'debugInfo', trim: true)]
+
+              git branch: result.branchName, url: 'https://github.com/devops-workspace/demo-junit'
+              echo result.debugInfo
+            }
+          }
+        }
+        
       }
     }
 
