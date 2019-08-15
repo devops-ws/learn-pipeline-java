@@ -12,11 +12,7 @@ pipeline {
     stage('Build & Test'){
       steps{
         script{
-          try {
-            container('java'){
-              sh 'mvn clean package test'
-            }
-          } catch(e) {
+          container('java'){
             sh 'mvn clean package test'
           }
         }
@@ -30,7 +26,7 @@ pipeline {
         }
       }
       steps{
-        echo 'sf'
+        echo 'only for demo'
       }
     }
   }
