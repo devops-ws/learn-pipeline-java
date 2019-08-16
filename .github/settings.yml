@@ -1,0 +1,3 @@
+repository:
+  name: demo-junit
+  description: A demo project for the Jenkins Pipeline
