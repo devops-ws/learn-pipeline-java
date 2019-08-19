@@ -58,6 +58,22 @@ pipeline {
           }
         }
         
+        stage('param-boolean'){
+          steps{
+            script{
+              result = input message: 'Please input the git branch name with debug info!', ok: 'Confirm',
+                parameters: [string(defaultValue: 'master',
+                  description: 'The branch name of git repo', name: 'branchName', trim: true),
+                  string(defaultValue: 'debug info',
+                  description: 'Output the debug info', name: 'debugInfo', trim: true),
+                  booleanParam(defaultValue: false, description: 'Run this Pipeline in debug mode.', name: 'debug')]
+
+              git branch: result.branchName, url: 'https://github.com/devops-workspace/demo-junit'
+              echo result.debugInfo
+            }
+          }
+        }
+        
       }
     }
 
