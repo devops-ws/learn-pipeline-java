@@ -1,4 +1,5 @@
 // this case requires docker image egaillardon/jmeter
+// you should run this pipeline under the kubernetes, and a container named jmeter is required
 pipeline{
     agent{
         label 'jmeter'
@@ -8,7 +9,9 @@ pipeline{
         stage('test'){
             steps{
                 script{
-                    sh 'jmeter -n -t src/test/resources/baidu-jmeter.jmx -l result.jtl -e -o result'
+                    container('jmeter'){
+                        sh 'jmeter -n -t src/test/resources/baidu-jmeter.jmx -l result.jtl -e -o result'
+                    }
                 }
             }
         }
