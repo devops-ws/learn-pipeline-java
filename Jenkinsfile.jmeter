@@ -1,6 +1,7 @@
 // this case requires docker image egaillardon/jmeter
 // you should run this pipeline under the kubernetes, and a container named jmeter is required
-// jcli plugin install htmlpublisher
+// In order to execute this successfuly, please install plugins using below command
+// jcli plugin install kubernetes htmlpublisher pipeline-restful-api
 pipeline{
     agent{
         label 'jmeter'
@@ -21,7 +22,7 @@ pipeline{
             steps{
                 script{
                     container('jmeter'){
-                        //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'result', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'result', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
                     }
                 }
             }
