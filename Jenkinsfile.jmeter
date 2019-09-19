@@ -1,0 +1,16 @@
+// this case requires docker image egaillardon/jmeter
+pipeline{
+    agent{
+        label 'jmeter'
+    }
+    
+    stages{
+        stage('test'){
+            steps{
+                script{
+                    sh 'jmeter -n -t src/test/resources/baidu-jmeter.jmx -l result.jtl -e -o result'
+                }
+            }
+        }
+    }
+}
