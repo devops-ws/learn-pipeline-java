@@ -6,5 +6,6 @@
 |---|---|---|
 |[Jenkinsfile-junit-k8s](Jenkinsfile-junit-k8s)|需要有一个带 `maven` 标签的代理节点。这个节点必须是在一个包含 `java` 容器的 pod 中。|生成 junit 报告。|
 |[Jenkinsfile-input](Jenkinsfile-input)|任何类型的节点。|需要用户输入，然后流水线才可以继续。|
+|[Jenkinsfile.jmeter](Jenkinsfile.jmeter)|一个 kubernetes 环境|在 Jenkins 中运行 JMeter 测试|
 
 查看更多 https://jenkins-zh.cn/about/course/#1
