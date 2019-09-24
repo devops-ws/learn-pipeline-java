@@ -12,7 +12,21 @@ pipeline{
             steps{
                 script{
                     container('jmeter'){
-                        sh 'jmeter -n -t src/test/resources/baidu-jmeter.jmx -l result.jtl -e -o result'
+                        sh 'rm -rf result && rm -rf result.jtl && jmeter -n -t src/test/resources/baidu-jmeter.jmx -l result.jtl -e -o result'
+
+                        sh 'tar czf result.tar.gz result'
+                        
+                        archiveArtifacts 'result.tar.gz'
+
+                        sh 'curl http://10.0.129.98:12345'
+                        def files = findFiles glob: 'result/**/*'
+                        for(file in files) {
+                            def path = file.path.replaceAll('result/', '').replaceAll(file.name, '')
+                            path = currentBuild.fullProjectName + '/' + currentBuild.number + '/' + path
+                            sh 'curl  -Ffile=@' + file.path + ' "http://10.0.129.98:12345/upload?token=testtoken&path=' + path + '"'
+                        }
+
+                        echo 'http://10.0.129.98:12345/' + currentBuild.fullProjectName + '/' + currentBuild.number + 'index.html'
                     }
                 }
             }
