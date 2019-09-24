@@ -26,7 +26,7 @@ pipeline{
                             sh 'curl  -Ffile=@' + file.path + ' "http://10.0.129.98:12345/upload?token=testtoken&path=' + path + '"'
                         }
 
-                        echo 'http://10.0.129.98:12345/' + currentBuild.fullProjectName + '/' + currentBuild.number + 'index.html'
+                        echo 'http://10.0.129.98:12345/' + currentBuild.fullProjectName + '/' + currentBuild.number + '/index.html'
                     }
                 }
             }
