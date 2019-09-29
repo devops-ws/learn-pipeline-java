@@ -9,11 +9,12 @@ pipeline {
   stages{
     stage('simple'){
       steps{
-        echo "My name is " + param.name + "."
+        echo "My name is " + ${params.name} + "."
 
         script {
-          if ($debug == "debug") {
+          if (${params.debug} == "debug") {
             echo "You can put some debug info at here."
+            echo "Another way to use param: " + params.name
           }
         }
       }
@@ -21,7 +22,7 @@ pipeline {
 
     stage('debug stage') {
       when {
-        equals expected: true, actual: param.debug
+        equals expected: true, actual: params.debug
       }
       steps {
         echo "It's joke, there're debug info here."
