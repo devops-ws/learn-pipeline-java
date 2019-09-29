@@ -11,7 +11,7 @@ pipeline {
       steps{
         echo "My name is $name."
 
-        if env.debug {
+        if ($debug == "debug") {
           echo "You can put some debug info at here."
         }
       }
