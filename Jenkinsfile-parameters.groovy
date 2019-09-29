@@ -9,7 +9,7 @@ pipeline {
   stages{
     stage('simple'){
       steps{
-        echo "My name is " + ${params.name} + "."
+        echo "My name is ${params.name}."
 
         script {
           if ("${params.debug}" == "debug") {
