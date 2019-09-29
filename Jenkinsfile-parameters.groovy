@@ -12,7 +12,7 @@ pipeline {
         echo "My name is " + ${params.name} + "."
 
         script {
-          if (${params.debug} == "debug") {
+          if ("${params.debug}" == "debug") {
             echo "You can put some debug info at here."
             echo "Another way to use param: " + params.name
           }
