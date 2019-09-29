@@ -9,7 +9,7 @@ pipeline {
   stages{
     stage('simple'){
       steps{
-        echo "My name is $name."
+        echo "My name is " + param.name + "."
 
         script {
           if ($debug == "debug") {
@@ -21,7 +21,7 @@ pipeline {
 
     stage('debug stage') {
       when {
-        equals expected: true, actual: $debug
+        equals expected: true, actual: param.debug
       }
       steps {
         echo "It's joke, there're debug info here."
