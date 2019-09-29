@@ -11,8 +11,10 @@ pipeline {
       steps{
         echo "My name is $name."
 
-        if ($debug == "debug") {
-          echo "You can put some debug info at here."
+        script {
+          if ($debug == "debug") {
+            echo "You can put some debug info at here."
+          }
         }
       }
     }
