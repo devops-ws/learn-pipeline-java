@@ -15,11 +15,11 @@ pipeline {
     stage('sonar scan') {
       steps {
         sh '''
-          echo $sonar.host.url
+          echo ${sonar.host.url}
           mvn sonar:sonar \
             -Dsonar.projectKey=df \
-            -Dsonar.host.url=$sonar.host.url \
-            -Dsonar.login=$sonar.login
+            -Dsonar.host.url=${sonar.host.url} \
+            -Dsonar.login=${sonar.login}
         '''
       }
     }
