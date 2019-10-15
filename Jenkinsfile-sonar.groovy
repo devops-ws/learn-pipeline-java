@@ -1,3 +1,5 @@
+// this demo runs in a k8s pod which has a docker container named 'java'
+// also, maven is needed in this case.
 pipeline {
   agent {
     label 'maven'
@@ -16,9 +18,8 @@ pipeline {
       steps {
         container('java'){
           sh '''
-            echo ${SONAR_HOST_URL}
             mvn sonar:sonar \
-              -Dsonar.projectKey=df \
+              -Dsonar.projectKey=test \
               -Dsonar.host.url=${SONAR_HOST_URL} \
               -Dsonar.login=${SONAR_LOGIN}
           '''
