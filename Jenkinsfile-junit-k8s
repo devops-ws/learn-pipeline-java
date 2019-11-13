@@ -9,6 +9,12 @@ pipeline {
 
   
   stages{
+    stage('Clone'){
+      steps{
+        //checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://gitee.com/devops-workspace/learn-pipeline-java']]])
+      }
+    }
+
     stage('Build & Test'){
       steps{
         script{
