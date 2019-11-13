@@ -13,7 +13,8 @@ pipeline {
       steps{
         script{
           container('java'){
-            sh 'mvn clean package test'
+            sh 'mvn test -DSERVER_PORT=1234'
+            //sh 'mvn test -DSERVER_PORT=2345'
           }
         }
       }
