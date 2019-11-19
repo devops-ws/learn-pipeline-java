@@ -8,5 +8,5 @@ According to different use cases, we provide several Jenkinsfile for you:
 |[Jenkinsfile-junit-k8s](Jenkinsfile-junit-k8s)|It requires an agent which has a label `maven`. The agent should be a pod which contains a container named `java`.|Generate junit report.|
 |[Jenkinsfile-input](Jenkinsfile-input)|Any types of agent.|Require a user to input something, then the Pipeline will keep going.|
 |[Jenkinsfile.jmeter.groovy](Jenkinsfile.jmeter.groovy)|A kubernetes environment|Running a JMeter test in Jenkins|
-
+|[Jenkinsfile-milestone.groovy](Jenkinsfile-milestone.groovy)|None|Abort running build if new one is started|
 See also https://jenkins-zh.cn/about/course/#1
