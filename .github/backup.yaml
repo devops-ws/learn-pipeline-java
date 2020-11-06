@@ -1,0 +1,22 @@
+name: Backup Git repository
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  git-repo-backup:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Backup to Gitee
+      uses: jenkins-zh/git-backup-actions@v0.0.4
+      env:
+        GIT_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
+        TARGET_GIT: "git@gitee.com:devops-ws/learn-pipeline-java.git"
+    - name: Backup to CodeChina
+      uses: jenkins-zh/git-backup-actions@v0.0.4
+      env:
+        GIT_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
+        TARGET_GIT: "git@codechina.csdn.net:devops-ws/learn-pipeline-java.git"
