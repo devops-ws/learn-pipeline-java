@@ -4,12 +4,14 @@ pipeline {
   parameters {
     string defaultValue: 'rick', description: 'just for testing', name: 'name', trim: true
     booleanParam defaultValue: false, description: 'You can use this flag to debug your Pipeline', name: 'debug'
+    choice choices: ['v1.18.8', 'v1.18.9'], description: 'Please choose the target Kubernetes version', name: 'kubernetesVersion'
   }
 
   stages{
     stage('simple'){
       steps{
         echo "My name is ${params.name}."
+        echo "Target Kubernetes version is " + params.kubernetesVersion
 
         script {
           if ("${params.debug}" == "true") {
