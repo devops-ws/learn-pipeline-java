@@ -6,3 +6,5 @@ target
 .classpath
 .settings
 bin
+src/main/webapp/WEB-INF/classes
+src/main/webapp/WEB-INF/lib
