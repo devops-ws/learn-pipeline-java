@@ -8,6 +8,17 @@
 
     <packaging>war</packaging>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/devops-ws/learn-pipeline-java</url>
+        </snapshotRepository>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/devops-ws/learn-pipeline-java</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
