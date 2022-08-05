@@ -5,6 +5,7 @@ pipeline {
     stage('one') {
       steps {
         echo 'first stage'
+        echo env.CHANGE_ID
       }
     }
     stage('two') {
